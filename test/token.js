@@ -82,6 +82,17 @@ describe("Apoorva's Token Contract",()=>{
             expect(await hardHatToken.checkBalance(person2.address)).to.equal(40)
 
         })
+
+        it("insufficient tokens",async()=>{
+            await hardHatToken.sendTokens(person1.address,12);//transfer 12 tokens from 
+            let address1Tokens = await hardHatToken.checkBalance(person1.address);;
+            expect(address1Tokens).to.equal(12);
+        
+            await expect( hardHatToken.connect(person1).sendTokens(person2.address, 25)).to.be.revertedWith("You have less tokens than you want to transfer");
+            
+            expect(await hardHatToken.checkBalance(person2.address)).to.equal(0);
+
+        })
     })
         
 

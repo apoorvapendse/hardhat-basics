@@ -24,11 +24,8 @@ contract Token{
     function sendTokens(address to,uint tokenCount) external{
         require(accountToToken[msg.sender]>=tokenCount,"You have less tokens than you want to transfer");
         //we will reach here after it is verified that msg.sender has more or equal no of tokens that he wants to donate
-        console.log("***sender balance is:",accountToToken[msg.sender]);
-        console.log("**sender is sending %s tokens",tokenCount);
         accountToToken[msg.sender] -= tokenCount;//decrease tokens from sender
         accountToToken[to] +=tokenCount;    //add tokens into receriver's account
-        console.log("**sender now has",accountToToken[msg.sender]);
 
     }
 

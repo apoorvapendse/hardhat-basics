@@ -16,7 +16,9 @@ contract Token{
         //whoever deploys this contract will contain all the tokens initially
         accountToToken[msg.sender] = totalTokenCount;
         owner = msg.sender;
+        console.log("constructor initialized, owner has total:",accountToToken[owner]," tokens");
     }
+
 
     function checkBalance(address accountAddress) view external returns(uint){
         return (accountToToken[accountAddress]);
